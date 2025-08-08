@@ -1,4 +1,4 @@
-// ✅ Correct Server-Side Code for index.js
+
 
 import express from 'express';
 import { load } from 'cheerio';
@@ -6,10 +6,10 @@ import { load } from 'cheerio';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware to parse JSON
+
 app.use(express.json());
 
-// POST route
+
 app.post('/process-html', async (req, res) => {
   const entries = req.body;
   if (!Array.isArray(entries)) {
@@ -92,7 +92,7 @@ app.post('/process-html', async (req, res) => {
   res.status(200).json({ results });
 });
 
-// Custom error handling middleware for invalid JSON
+
 app.use((err, req, res, next) => {
   if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
     console.error('Bad JSON request received:', err.message);
@@ -104,7 +104,8 @@ app.use((err, req, res, next) => {
   next(err);
 });
 
-// Start server
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
